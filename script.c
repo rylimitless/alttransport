@@ -29,14 +29,18 @@ int main(int argc , char * argv[]){
         exit(-1);
     }
 
+
     char * command = argv[1];
-    char * message = argv[2];
 
-    puts(message);
-
-    if(strcmp(command,"commit")==0){
+    if(strcmp(command,"commit")==0 && argc==3){
+        char * message = argv[2];
         commit(message);
+    } else {
+        puts("No such command, yet");
+        exit(-1);
     }
+
+    return 0;
 
 
 }
