@@ -24,7 +24,7 @@ void commit(char * commitMessage){
 
 void push(char * commitMessage){
     commit(commitMessage);
-    // system("git push origin");
+    system("git push origin");
 }
 
 int main(int argc , char * argv[]){
