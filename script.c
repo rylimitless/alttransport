@@ -19,7 +19,11 @@ void commit(char * commitMessage){
     sprintf(msg,"git commit -m %s",commitMessage);
     system("git add *");
     system(msg);
+}
 
+void push(char * commitMessage){
+    commit(commitMessage);
+    system("git push origin");
 }
 
 int main(int argc , char * argv[]){
@@ -35,7 +39,11 @@ int main(int argc , char * argv[]){
     if(strcmp(command,"commit")==0 && argc==3){
         char * message = argv[2];
         commit(message);
-    } else {
+    } else if(strcmp(command,"push")==0 && argc==3){
+        char * message = argv[2];
+        push(message);
+    }
+    else {
         puts("No such command, yet");
         exit(-1);
     }
