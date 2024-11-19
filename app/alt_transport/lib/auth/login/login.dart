@@ -1,3 +1,4 @@
+import 'package:alt_transport/booking/booking.dart';
 import 'package:alt_transport/services/pocketbase/pb_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -168,6 +169,8 @@ class _LoginScreen extends State<Login> {
                                     title: Text('Welcome Back'),
                                     autoCloseDuration: const Duration(seconds: 1),
                                   );
+
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> BookingPage()));
                                 }else {
                                   toastification.show(
           context: context, // optional if you use ToastificationWrapper
@@ -216,6 +219,7 @@ class _LoginScreen extends State<Login> {
                             const Text("Don't have an account? "),
                             GestureDetector(
                               onTap: (){
+                          
                                 //Go to sign up
                               },
                               child: const Text("Sign up instead",
