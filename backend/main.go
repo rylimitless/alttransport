@@ -18,6 +18,11 @@ func main() {
 		return nil
 	})
 
+	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
+		log.Println("Starting backend")
+		return nil
+	})
+
 	if err := app.Start(); err != nil {
 		log.Fatal(err)
 	}
