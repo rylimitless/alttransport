@@ -1,4 +1,6 @@
+import 'package:alt_transport/booking/booking_day.dart';
 import 'package:alt_transport/booking/providers/booking_provider.dart';
+import 'package:alt_transport/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -21,9 +23,8 @@ class _BookingPageState extends State<BookingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => BookingProvider(),
-      child: Consumer<BookingProvider>(
+  
+      return Consumer<BookingProvider>(
         builder: (context, booking, child) {
           return Scaffold(
             appBar: AppBar(
@@ -46,6 +47,7 @@ class _BookingPageState extends State<BookingPage> {
                 ),
                 Expanded(
                   child: ListView.builder(
+
                       itemCount: booking.avaliableDays.length,
                       itemBuilder: (context, index) {
                         var date = booking.avaliableDays[index];
@@ -65,6 +67,9 @@ class _BookingPageState extends State<BookingPage> {
                             ),
                           ),
                           child: ListTile(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> BookingDay(date: date , index:index)));
+                            },
                             trailing: const Icon(
                                 // color:  Color.fromARGB(
                                 //           255,
@@ -112,22 +117,10 @@ class _BookingPageState extends State<BookingPage> {
                 tooltip: "Next Seat",
               ),
             ),
-            bottomNavigationBar: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                items: const [
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.home_outlined), label: "Home"),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.airplane_ticket_outlined),
-                      label: "Tickets"),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.person_2_outlined), label: "Account"),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.settings_outlined), label: "Setting"),
-                ]),
+            bottomNavigationBar: const NavBar(),
           );
         },
-      ),
-    );
+      );
   }
 }
+

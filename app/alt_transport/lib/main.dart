@@ -1,11 +1,16 @@
 import 'package:alt_transport/auth/login/login.dart';
+import 'package:alt_transport/booking/providers/booking_provider.dart';
 import 'package:alt_transport/services/pocketbase/pb_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 
 void main() async{
   await registerSingleTons();
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: ((context) => BookingProvider()),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
